@@ -81,9 +81,18 @@ public class HomeController extends Controller {
      * 上記をxml形式で出力
      * ※Chromeではスタイルと関連付けられていないというメッセージが表示される
      */
+//    public Result index() {
+//        return ok("<root><title>Hello!</title><message>This is sample message.</message></root>")
+//                .as("application/xml");
+//    }
+
+
+    /**
+     * 上記をjson形式で出力
+     */
     public Result index() {
-        return ok("<root><title>Hello!</title><message>This is sample message.</message></root>")
-                .as("application/xml");
+        return ok("{title:'Hello!', message:'This is sample message.'}")
+                .as("application/json");
     }
 
 
