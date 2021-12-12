@@ -18,7 +18,19 @@ public class HomeController extends Controller {
 //        return ok(views.html.index.render());
 //    }
 
+
+    /**
+     * ok関数内の出力文字をデフォルトメッセージに変更
+     */
+//    public Result index() {
+//        return ok("Welcome to play Framework!");
+//    }
+
+
+    /**
+     * TODOダミーページの出力
+     */
     public Result index() {
-        return ok("Welcome to play Framework!");
+        return TODO;
     }
 }
