@@ -71,9 +71,19 @@ public class HomeController extends Controller {
      * Ok関数の中身でhtmlタグを指定し、内容を出力
      * .as以降で出力形式をしていしている
      */
+//    public Result index() {
+//        return ok("<h1>Hello!</h1><p>This is sample message.<p>")
+//                .as("text/html");
+//    }
+
+
+    /**
+     * 上記をxml形式で出力
+     * ※Chromeではスタイルと関連付けられていないというメッセージが表示される
+     */
     public Result index() {
-        return ok("<h1>Hello!</h1><p>This is sample message.<p>")
-                .as("text/html");
+        return ok("<root><title>Hello!</title><message>This is sample message.</message></root>")
+                .as("application/xml");
     }
 
 
