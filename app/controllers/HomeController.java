@@ -1,6 +1,8 @@
 package controllers;
 
-import play.mvc.*;
+import akka.util.*;
+import java.util.*;
+import play.http.*;
 
 /**
  * This controller contains an action to handle HTTP requests
@@ -20,7 +22,7 @@ public class HomeController extends Controller {
 
 
     /**
-     * ok関数内の出力文字をデフォルトメッセージに変更
+     * Ok関数内で指定したデフォルトのメッセージを表示
      */
 //    public Result index() {
 //        return ok("Welcome to play Framework!");
@@ -28,9 +30,39 @@ public class HomeController extends Controller {
 
 
     /**
-     * TODOダミーページの出力
+     * 「TODO」ダミーページを表示
+     * 「とりあえずアクションメソッドを一通り用意しておいて、具体的な内容は後で作成する」
+     * という時に使う開発時の便利機能
+     */
+//    public Result index() {
+//        return TODO;
+//    }
+
+
+    /**
+     * Resultインスタンスの作成（クライアントに情報を返送するレスポンスを扱うクラス）
+     * 〇Result(《ResponseHeader》,《HttpEntity》);
+     *
+     * 【第１引数】ResultHeaderクラス（レスポンスのステータス情報やヘッダー情報を送信するクラス）
+     * 〇new ResponseHeader( 整数 , 《Map》 )
+     *   ・（第１引数）整数　＝　ステータス番号
+     *   ・（第２引数）Map　＝　必要なヘッダー情報をまとめたもの（【scala】: scala.predef.Map　【Java】:java.util.Map(=HashMap))
+     *
+     * 【第２引数】HttpEntityクラス（HTTPレスポンスのボディ部分を管理するクラス）
+     * 〇new HttpEntity.Strict(《ByteString》, 《Optional》)
+     *  ※いくつかあるHttpEntityのサブクラスの中でもっとも一般的に用いられるクラス
+     *   ・（第１引数）ByteString　＝　実際にコンテンツとして出力されるテキスト
+     *   ・（第２引数）Optional　＝　テキストの値を指定
      */
     public Result index() {
-        return TODO;
+        return new Result(
+                new ResponsiHeader(200, new HashMap<>),
+                new HttpEntity.Strict(
+                        ByteString.fromString("This is sample text."),
+                        Optional.ofNullable("text/plain")
+                )
+        );
     }
+
+
 }
