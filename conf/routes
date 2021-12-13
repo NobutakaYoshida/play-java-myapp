@@ -9,7 +9,10 @@
 #複数のパラメーターを設定
 #GET     /:id+:name                           controllers.HomeController.index(id:Int, name:String)
 #オプションパラメーターの利用
-GET     /:id                           controllers.HomeController.index(id:Int, name:java.util.Optional[String])
+#GET     /:id                           controllers.HomeController.index(id:Int, name:java.util.Optional[String])
+#クッキーにnameを保存する
+GET     /                           controllers.HomeController.index(name:java.util.Optional[String])
+
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
