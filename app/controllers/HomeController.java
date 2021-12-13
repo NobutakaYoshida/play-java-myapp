@@ -124,8 +124,24 @@ public class HomeController extends Controller {
      * @param id
      * @return
      */
-    public Result index(int id) {
-        return ok("<title>Hello!</title><h1>Hello!</h1><p>ID = " + id + " です。</p>")
+//    public Result index(int id) {
+//        return ok("<title>Hello!</title><h1>Hello!</h1><p>ID = " + id + " です。</p>")
+//                .as("text/html");
+//    }
+
+
+    /**
+     * Int型のid、String型のnameをパラメーターから受け取り、値をセットして出力
+     * ２つのパラメーターを渡す場合の記述形式は、今回は「/:id+:name」としているが、
+     * 「/:id/:name」でも、「/:id=:name」でも問題ない。
+     * （１つ１つの値が区別され、かつURLで利用可能な文字で記述されていれば良い。）
+     *
+     * @param id　【指定必須】
+     * @param name　【指定必須】
+     * @return
+     */
+    public Result index(int id, String name) {
+        return ok("<title>Hello!</title><h1>Hello!</h1><p>ID = " + id + ", NAME = " + name + " です。</p>")
                 .as("text/html");
     }
 
