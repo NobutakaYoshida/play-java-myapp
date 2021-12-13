@@ -58,7 +58,7 @@ public class HomeController extends Controller {
      */
 //    public Result index() {
 //        return new Result(
-//                new ResponsiHeader(200, new HashMap<>),
+//                new ResponseHeader(200, new HashMap<>),
 //                new HttpEntity.Strict(
 //                        ByteString.fromString("This is sample text."),
 //                        Optional.ofNullable("text/plain")
@@ -90,10 +90,33 @@ public class HomeController extends Controller {
     /**
      * 上記をjson形式で出力
      */
+//    public Result index() {
+//        return ok("{title:'Hello!', message:'This is sample message.'}")
+//                .as("application/json");
+//    }
+
+
+    /**
+     * HTMLのソースコードにヘッダー情報を設定する方法
+     * 〇Http.Responseの取得
+     * 　変数　＝　《Controller》.response();
+     *  　・ヘッダー情報はレスポンスを管理する「Http.Response」クラスにメソッドが用意されている
+     *  　・まずHttp.Responseを取得し、それからヘッダー設定のメソッドを呼び出すことになる
+     *  　・Controllerクラスに用意されている「response」というメソッドで取得できる
+     *
+     * 〇ヘッダー情報の設定
+     * 　《Http.Response》.setHeader( ヘッダー項目 , 値　);
+     * 　　・ヘッダー情報の設定は、setHeaderで設定する
+     *  　・第１引数にはヘッダー項目を指定する。これはControllerクラスに用意されている値を使用する
+     *  　・setHeaderで一通りヘッダーの設定をした後、okでResultをreturnすれば、ヘッダーが設定された形でクライアントに表示が送られる
+     */
     public Result index() {
-        return ok("{title:'Hello!', message:'This is sample message.'}")
-                .as("application/json");
+        response().setHeader(ACCEPT_CHARSET, "utf-8");
+        response().setHeader(ACCEPT_LANGUAGE, "ja-JP");
+        return ok("<title>Hello!</title><h1>Hello!</h1><p>サンプルのメッセージ。</p>")
+                .as("text/html");
     }
+
 
 
 }
