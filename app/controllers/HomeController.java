@@ -155,10 +155,64 @@ public class HomeController extends Controller {
      * @param name　【任意】
      * @return
      */
-    public Result index(int id, Optional name) {
-        return ok("<title>Hello!</title><h1>Hello!</h1><p>ID = " + id + ", NAME = " + name.orElse("no-name") + " です。</p>")
-                .as("text/html");
-    }
+//    public Result index(int id, Optional name) {
+//        return ok("<title>Hello!</title><h1>Hello!</h1><p>ID = " + id + ", NAME = " + name.orElse("no-name") + " です。</p>")
+//                .as("text/html");
+//    }
+
+
+    /**
+     * パラメーターで渡されたnameをクッキーに保存する。（最近はセッションが使われることが多い）
+     *
+     * 【Cookieインスタンス作成】
+     * 変数　＝　Http.Cookie.builder(　キー　,　値　).build();
+     * 　※　Javaのクッキーは、Cookieクラスとして用意されている。
+     * 　※　ただし、これはHttpクラスの内部クラスとして作成されているため、通常はHttp.Cookieという形で利用することになる。
+     * 　※　Cookieインスタンスは、newで作成せず、Cookieに用意されているbuilderメソッドを使う。
+     * 　※　これは引数にキーと値を指定して呼び出す。
+     * 　※　クッキーを作成するCookieBuilderクラスのインスタンスを作成し、このクラスの「build」メソッドを呼び出すことで、Cookieインスタンスが生成される。
+     *
+     * 【クッキーの保存期間の設定】
+     * 《CookieBuilder》.withMaxAge(Duration.ofSeconds( 秒数　))
+     * 　※　作成されたクッキーはブラウザ終了時に廃棄されるため、期間を指定してクッキーを作成したい場合は、CookieBuilderの「withMaxAge」メソッドを呼び出す。
+     * 　※　これは引数に保存する期間を示す値を用意する。通常は、Duration.ofSecondsメソッドを使い、これは引数に指定した秒数を表すIntegerを返す。
+     *
+     * Http.Cookie.builder( キー　,　値　)
+     *      .withMaxAge(Duration.ofSeconds( 秒数 ))
+     *      .build();
+     * 　※　withMaxAgeは、CookieBuilderインスタンス自信を戻り値として返す。したがって、builderの後に呼び出し、そのままメソッドチェーンを使ってbuildすることができる。
+     *
+     * 【保存】
+     * 《Result》.setCookie(《Cookie》);
+     *
+     * 【取得】
+     *  変数 = 《Request》.cookie(キー);
+     *
+     * 【削除】
+     * 《Result》.discardCookie(キー);
+     *
+     *
+     * @param name
+     * @return
+     */
+//    public Result index(Optional<String> name) {
+//        String param = name.orElse("");
+//        String message = "<p>nameはありません。</p>";
+//        if(param != "") {
+//            message = "<p>nameが送られました。</p>";
+//            Http.Cookie newcookie = Http.Cookie.builder("name", param)
+//                    .build();
+//            response().setCookie(newcookie);
+//        }
+//        Http.Cookie cookie = request().cookie("name");
+//        if(cookie == null) {
+//            message += "<p>cookie: no-cookie.</p>";
+//        } else {
+//            message += "<p>cookie: " + cookie.value() + "</p>";
+//        }
+//        return ok("<title>Hello!</title><h1>Hello!</h1>" + message)
+//                .as("text/html");
+//    }
 
 
 
