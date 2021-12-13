@@ -140,8 +140,23 @@ public class HomeController extends Controller {
      * @param name　【指定必須】
      * @return
      */
-    public Result index(int id, String name) {
-        return ok("<title>Hello!</title><h1>Hello!</h1><p>ID = " + id + ", NAME = " + name + " です。</p>")
+//    public Result index(int id, String name) {
+//        return ok("<title>Hello!</title><h1>Hello!</h1><p>ID = " + id + ", NAME = " + name + " です。</p>")
+//                .as("text/html");
+//    }
+
+
+    /**
+     * 上記と同じ処理。ただし、 nameにオプションパラメーターを使用。（未指定でもエラーにならない）
+     * nameがnullの場合はorElse()メソッド内で指定した文字を出力。
+     * 記述する場合はidを指定した後に「?name=○○」と書く
+     *
+     * @param id　【指定必須】
+     * @param name　【任意】
+     * @return
+     */
+    public Result index(int id, Optional name) {
+        return ok("<title>Hello!</title><h1>Hello!</h1><p>ID = " + id + ", NAME = " + name.orElse("no-name") + " です。</p>")
                 .as("text/html");
     }
 
